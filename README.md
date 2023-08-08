@@ -8,7 +8,7 @@
 - Lifecycle 제어하기 (useEffect 사용)
 - API 호출하기
 - 최적화하기 (useMemo, React.memo, useCallback)
-- 복잡하 상태 관리 로직 분리하기 (useReducer)
+- 복잡한 상태 관리 로직 분리하기 (useReducer)
 - 컴포넌트 트리에 데이터 공급하기 (Context)
 
 
