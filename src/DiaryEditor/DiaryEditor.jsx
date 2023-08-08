@@ -1,7 +1,13 @@
 import {useState} from "react";
+import {useRef} from "react"; // 어떤 Dom 요소를 선택할 수 있게 함 (어디에 focus 효과를 줄지)
 import './DiaryEditor.css';
 
 const DiaryEditor = () => {
+  const authorInput = useRef();
+  // HTML 돔 요소를 접근할 수 있게 해줌
+  const contentInput = useRef();
+
+
   const [state, setState] = useState({
     author: "",
     content: "",
@@ -20,13 +26,13 @@ const DiaryEditor = () => {
   // 입력 강제하기
   const handleSubmit = ()=>{
     if(state.author.length < 1){
-      alert("작성자는 최소 1글자 이상 입력해주세요");
       // focus
+      authorInput.current.focus(); // useRef라는 기능으로 생성한 객체는 현재 가리키는 값을 current라는 프로퍼티로 불러와서 사용 가능
       return;
     } 
 
     if(state.content.length < 5){
-      alert("일기 본문은 최소 5글자 이상 입력해주세요");
+      contentInput.current.focus();
       // focus
       return;
     } 
@@ -40,10 +46,11 @@ const DiaryEditor = () => {
     <div className="DiaryEditor">
       <h2>오늘의 일기</h2>
       <div>
-        <input name="author" value={state.author} onChange={handleChangeState} />
+        <input ref={authorInput} name="author" value={state.author} onChange={handleChangeState} />  
       </div>
+      {/* input과 textarea에 useRef 전달해주기 */}
       <div>
-        <textarea name="content" value={state.content} onChange={handleChangeState} />
+        <textarea ref={contentInput} name="content" value={state.content} onChange={handleChangeState} />
       </div>
       <div>
         <select  name="emotion" value={state.emotion} onChange={handleChangeState} > 
@@ -57,7 +64,6 @@ const DiaryEditor = () => {
       </div>
       <div> 
       <button onClick={handleSubmit}>일기 저장하기</button> 
-      {/* 버튼을 만든다. */}
       </div>
     </div>
   );
