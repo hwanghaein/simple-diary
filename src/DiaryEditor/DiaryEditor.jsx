@@ -1,4 +1,5 @@
 import {useState} from "react";
+import './DiaryEditor.css';
 
 const DiaryEditor = () => {
   const [state, setState] = useState({
@@ -15,11 +16,25 @@ const DiaryEditor = () => {
 
   };
  
-  // 버튼 이벤트 함수 만들기
+
+  // 입력 강제하기
   const handleSubmit = ()=>{
-    console.log(state);
+    if(state.author.length < 1){
+      alert("작성자는 최소 1글자 이상 입력해주세요");
+      // focus
+      return;
+    } 
+
+    if(state.content.length < 5){
+      alert("일기 본문은 최소 5글자 이상 입력해주세요");
+      // focus
+      return;
+    } 
+
     alert("저장성공");
-  }
+  };
+
+  
 
   return (
     <div className="DiaryEditor">
