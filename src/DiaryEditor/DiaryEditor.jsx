@@ -2,7 +2,7 @@ import {useState} from "react";
 import {useRef} from "react"; // 어떤 Dom 요소를 선택할 수 있게 함 (어디에 focus 효과를 줄지)
 import './DiaryEditor.css';
 
-const DiaryEditor = () => {
+const DiaryEditor = ({onCreate}) => { // 10 (onCreate 함수를 props로 받음)
   const authorInput = useRef();
   // HTML 돔 요소를 접근할 수 있게 해줌
   const contentInput = useRef();
@@ -36,8 +36,14 @@ const DiaryEditor = () => {
       // focus
       return;
     } 
-
+     
+    onCreate(state.author, state.content, state.emotion);  // 11 (일기 저장이 발생했을때 onCreate 함수 호출)
     alert("저장성공");
+    setState({ // 기본값으로 초기화
+      author: "",
+      content: "",
+      emotion: 1,
+    })
   };
 
   
