@@ -1,15 +1,14 @@
-const DiaryItem = (author, content, created_date, emotion, id) => {
-  // unique "key" prop 에러 해결 (최상위 태그에 적기)
+const DiaryItem = ({author, content, created_date, emotion, id}) => {
   return (
     <div className="DiaryItem">
-      <div key={it.id}>
-        <div className="info">
-          <div>작성자 : {it.author}</div>
-          <div>일기 : {it.content}</div>
-          <div>감정 : {it.emotion}</div>
-          <div>작성 시간(ms) : {it.created_date}</div>
-        </div>
+      <div className="info">
+        <span>
+          작성자 : {author} | 감정 점수: {emotion}
+        </span>
+        <br />
+        <span className="date">{new Date(created_date).toLocaleString()}</span>
       </div>
+      <div className="content">{content}</div>
     </div>
   );
 };
