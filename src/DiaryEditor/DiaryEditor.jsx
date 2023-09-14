@@ -1,8 +1,9 @@
-import {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useRef} from "react"; // 어떤 Dom 요소를 선택할 수 있게 함 (어디에 focus 효과를 줄지)
 import './DiaryEditor.css';
 
 const DiaryEditor = ({onCreate}) => { // 10 (onCreate 함수를 props로 받음)
+ 
   const authorInput = useRef();
   // HTML 돔 요소를 접근할 수 있게 해줌
   const contentInput = useRef();
@@ -75,4 +76,4 @@ const DiaryEditor = ({onCreate}) => { // 10 (onCreate 함수를 props로 받음)
   );
 };
 
-export default DiaryEditor;
+export default React.memo(DiaryEditor);
