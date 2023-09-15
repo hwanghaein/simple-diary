@@ -1,9 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import React, { useState } from "react";
+import { DiaryDispatchContext } from "./App";
 
 const DiaryItem = ({
-  onEdit,
-  onDelete,
   author,
   content,
   created_date,
@@ -11,8 +10,7 @@ const DiaryItem = ({
   id,
 }) => {
 
-
-  useEffect(()=>{console.log(`${id}번 째 아이템 렌더`);})
+const { onDelete, onEdit} = useContext(DiaryDispatchContext)
 
   const [isEdit, setIsEdit] = useState(false);
   const toggleIsEdit = () => setIsEdit(!isEdit);
